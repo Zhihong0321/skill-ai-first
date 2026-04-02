@@ -16,6 +16,16 @@ The purpose is not to "fix everything." The purpose is to keep the codebase easy
 - do not mix digestion, cleanup, and optimization in one pass
 - prefer reversible changes over aggressive deletion
 - treat large files, stale files, and obsolete decisions as different classes of work
+- read the previous maintenance log before choosing the next stage
+
+## Startup Requirement
+
+Before deciding the stage:
+
+1. locate the maintenance log using `../references/maintenance-log-policy.md`
+2. if no log exists, initialize `.agents/ai-first-maintenance-log.md` using `../scripts/update_maintenance_log.py --init`
+3. read the latest entries
+4. use that history as an input to stage selection
 
 ## Single-Task Rule
 
@@ -109,11 +119,13 @@ Read `../references/external-skill-intake.md` before incorporating outside skill
 - `../references/ai-friendly-code-shape.md`
 - `../references/soft-remove-policy.md`
 - `../references/external-skill-intake.md`
+- `../references/maintenance-log-policy.md`
 
 ## Shared Scripts
 
 - `../scripts/inventory_large_files.py`
 - `../scripts/find_context_noise.py`
+- `../scripts/update_maintenance_log.py`
 
 ## Output Expectations
 

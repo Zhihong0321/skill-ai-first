@@ -16,6 +16,7 @@ The workflow is intentionally slow and staged. Each run should handle one stage,
 
 ## Skills
 
+- `ai-first-maintenance`: automation-friendly entrypoint for "run ai-first-maintenance"
 - `maintain-ai-first-codebase`: top-level strategy and stage selection
 - `baseline-locker`: confirm and protect current working state
 - `codebase-mapper`: build a ranked maintenance map
@@ -31,7 +32,21 @@ The workflow is intentionally slow and staged. Each run should handle one stage,
 
 ## Suggested Usage
 
-Start with `maintain-ai-first-codebase` and let it choose the next stage.
+Fast entry:
+
+- say `run ai-first-maintenance`
+
+The entry skill is designed to:
+
+- inspect the repo at a big-picture level
+- read the previous maintenance log
+- determine the current stage
+- choose one next target only
+- either recommend that target or execute it, depending on the user's request
+
+Direct strategy entry:
+
+- use `maintain-ai-first-codebase` and let it choose the next stage
 
 Default sequence:
 
@@ -50,3 +65,4 @@ This repository is published as a multi-skill bundle.
 - For project-local usage, place the repo contents under `.agents/skills/`.
 - For personal usage, place the repo contents under your Codex skills directory if your setup supports multi-skill bundles there.
 - If you install a single folder in isolation, also copy the shared `references/` and `scripts/` directories it depends on.
+- The bundle expects to maintain a repo-local memory file at `.agents/ai-first-maintenance-log.md`.
