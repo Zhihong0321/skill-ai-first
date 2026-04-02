@@ -16,6 +16,9 @@ DEFAULT_EXTENSIONS = {
     ".html",
     ".css",
     ".sql",
+    ".json",
+    ".yaml",
+    ".yml",
 }
 
 IGNORED_DIRS = {

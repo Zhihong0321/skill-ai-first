@@ -54,7 +54,7 @@ def main() -> int:
     parser.add_argument("--log-path", help="Optional explicit log path.")
     parser.add_argument("--repo-name", help="Optional repo name override.")
     parser.add_argument("--init", action="store_true", help="Initialize the log if missing.")
-    parser.add_argument("--mode", default="planning", help="Run mode: planning or action.")
+    parser.add_argument("--mode", default="planning", choices=["planning", "action"], help="Run mode: planning or action.")
     parser.add_argument("--stage", default="map-ready", help="Chosen stage.")
     parser.add_argument("--target", default="(not selected yet)", help="Chosen target.")
     parser.add_argument("--reason", default="Initial maintenance run.", help="Why the target was chosen.")

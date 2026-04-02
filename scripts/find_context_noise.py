@@ -17,6 +17,9 @@ IGNORED_DIRS = {
 NOISE_KEYWORDS = {
     "archive",
     "backup",
+    "debug",
+    "draft",
+    "fixme",
     "guide",
     "instruction",
     "instructions",
@@ -24,8 +27,10 @@ NOISE_KEYWORDS = {
     "note",
     "notes",
     "old",
+    "scratch",
     "temp",
     "tmp",
+    "wip",
 }
 
 TEXT_SUFFIXES = {".md", ".txt", ".js", ".ts", ".json", ".html", ".css", ".sql"}
@@ -53,10 +58,15 @@ def should_include_file(path: Path) -> bool:
 
 
 def iter_candidates(root: Path):
-    for path in root.rglob("*"):
+    noise_dirs: set[Path] = set()
+    for path in sorted(root.rglob("*"), key=lambda p: len(p.parts)):
         if is_ignored(path):
             continue
+        # Skip anything already inside a reported noise dir
+        if any(path.is_relative_to(nd) for nd in noise_dirs):
+            continue
         if path.is_dir() and looks_like_noise(path):
+            noise_dirs.add(path)
             yield "dir", path
             continue
         if not path.is_file():
