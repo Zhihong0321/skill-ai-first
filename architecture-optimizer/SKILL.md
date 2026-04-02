@@ -34,6 +34,14 @@ Improve the big-picture shape of the codebase without turning the run into a ful
 - do not jump to overhaul when a focused simplification is enough
 - prefer deletion of duplicate logic over adding another abstraction
 
+## Escalation Threshold
+
+If the improvement requires changes across more than **3 files** or touches more than **2 distinct modules**, stop.
+
+- do not proceed with the change in the same run
+- route to `../overhaul-planner/SKILL.md` instead
+- record the escalation decision and reason in the maintenance log
+
 ## Deliverable
 
 Report:

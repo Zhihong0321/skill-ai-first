@@ -1,0 +1,11 @@
+# AI First Maintenance Bundle
+#
+# The maintenance log is project-local state generated at runtime.
+# It is excluded here because each user's project will have its own log.
+# If you want to commit your log, remove the line below.
+.agents/ai-first-maintenance-log.md
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo

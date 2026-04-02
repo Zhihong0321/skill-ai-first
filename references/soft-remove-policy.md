@@ -14,12 +14,24 @@ Use a clear marker with date and reason.
 
 Examples:
 
+**JavaScript / TypeScript**
 ```js
 // SOFT-REMOVE(2026-04-01): suspected legacy path, no active callers found during cleanup pass
 ```
 
+**Python**
+```python
+# SOFT-REMOVE(2026-04-01): suspected legacy helper, no imports found during cleanup pass
+```
+
+**Markdown / plain text**
 ```txt
-SOFT-REMOVE(2026-04-01): retained for one stability window before deletion
+<!-- SOFT-REMOVE(2026-04-01): outdated instructions, retained one stability window before deletion -->
+```
+
+**YAML / config**
+```yaml
+# SOFT-REMOVE(2026-04-01): obsolete env key, kept for one deploy cycle before removal
 ```
 
 ## Rules

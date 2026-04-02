@@ -29,6 +29,18 @@ Do not begin structural cleanup here unless the user explicitly asks for it.
 4. Run the safest available verification.
 5. If confidence is still weak, ask the user to confirm the working state before proceeding to later stages.
 
+## When No Tests Exist
+
+Many AI-maintained repos have no test suite. In that case, use these alternatives in order of preference:
+
+- **runtime smoke check**: run the app or script and confirm the primary user flow completes without error
+- **build check**: if a build step exists, confirm it completes cleanly
+- **import / syntax check**: for Python, run `python -m py_compile <target>`; for Node.js, run `node --check <target>`
+- **manual confirmation**: ask the user to confirm that the core flow still works before proceeding
+- **explicit uncertainty note**: if none of the above is available, write "no automated verification available" in the baseline note — never silently claim the baseline is safe
+
+Do not proceed to `map-ready`, `digestion-ready`, or `cleaning-ready` until at least one of these has been completed.
+
 ## Deliverable
 
 Produce a concise baseline note that states:

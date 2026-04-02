@@ -39,6 +39,15 @@ For each run:
 
 If multiple good targets exist, pick the smallest high-confidence target first.
 
+## Resume-In-Progress Rule
+
+Before choosing a new stage, read the last log entry.
+
+- if the last entry shows a stage as in-progress or verification-pending, resume that stage before selecting anything new
+- do not declare a stage complete unless verification was explicitly performed and passed
+- if the in-progress state is ambiguous or the target is no longer valid, note the skip in the log with a reason and proceed
+- never silently skip an unverified change
+
 ## Stage Model
 
 ### 1. `baseline-locked`

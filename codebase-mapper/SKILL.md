@@ -26,7 +26,9 @@ Find the next best single maintenance target without rushing into changes.
 1. Inspect the repo shape.
 2. Run `../scripts/inventory_large_files.py`.
 3. Run `../scripts/find_context_noise.py`.
-4. Read only the most relevant files from the results.
+4. From the combined results, read at most **5 files** — prioritize the largest and most noise-flagged.
+   - do not read more than 5 files in one mapping run even if more candidates exist
+   - remaining candidates can be mapped in future runs
 5. Rank the next target by clarity, confidence, and value.
 
 ## Output

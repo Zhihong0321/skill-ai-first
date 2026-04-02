@@ -19,22 +19,27 @@ Use it when the user wants the workflow to feel automatic:
 
 When this skill is invoked:
 
-1. locate the repo root
-2. look for an existing maintenance log in this order:
+1. locate the repo root (the user's project being maintained)
+2. locate the bundle root (the directory containing this SKILL.md file)
+   - script paths like `../scripts/` are relative to the bundle root, NOT the user's repo root
+   - resolve: `<bundle-root>/scripts/inventory_large_files.py`, etc.
+3. look for an existing maintenance log in the user's repo in this order:
    - `.agents/ai-first-maintenance-log.md`
    - `ai-first-maintenance-log.md`
    - `docs/ai-first-maintenance-log.md`
-3. if no log exists, create `.agents/ai-first-maintenance-log.md` using `../scripts/update_maintenance_log.py --init`
-4. read the latest log entries before choosing a stage
-5. run the big-picture inventory:
-   - `../scripts/inventory_large_files.py`
-   - `../scripts/find_context_noise.py`
-6. determine the current stage using:
+4. if no log exists, create `.agents/ai-first-maintenance-log.md` using:
+   `python <bundle-root>/scripts/update_maintenance_log.py --init --repo-root <repo-root>`
+5. read the latest log entries before choosing a stage
+6. check if any stage is marked in-progress in the log — if so, resume that stage before choosing a new one
+7. run the big-picture inventory against the user's repo root:
+   - `python <bundle-root>/scripts/inventory_large_files.py <repo-root>`
+   - `python <bundle-root>/scripts/find_context_noise.py <repo-root>`
+8. determine the current stage using:
    - `../references/stage-selection.md`
    - the current repo state
    - the last maintenance run log
-7. choose exactly one next target
-8. route to the appropriate stage skill
+9. choose exactly one next target
+10. route to the appropriate stage skill
 
 ## Decision Rules
 

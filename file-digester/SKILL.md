@@ -28,6 +28,8 @@ Read `../references/ai-friendly-code-shape.md` before starting.
 1. Confirm one exact digestion target.
 2. Identify responsibility boundaries inside the file.
 3. Extract stable helpers first.
+   - a helper is **stable** if: it is self-contained, has no side effects, is not expected to change across the next 3 maintenance runs, and serves a single clear purpose
+   - unstable helpers (tightly coupled to current business logic, frequently edited, or encoding active decisions) should stay in place until a later pass
 4. Split by concern, not by arbitrary line count.
 5. Preserve external behavior.
 6. Run the safest available verification.
