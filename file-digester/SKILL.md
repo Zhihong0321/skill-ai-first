@@ -22,6 +22,7 @@ Prefer targets that show one or more of these signs:
 - frequent edits from many unrelated tasks
 
 Read `../references/ai-friendly-code-shape.md` before starting.
+Read `../references/anti-overengineering.md` before starting.
 
 ## Workflow
 
@@ -40,6 +41,7 @@ Read `../references/ai-friendly-code-shape.md` before starting.
 - no architecture overhaul inside digestion work
 - no cleanup sweep inside digestion work
 - rename only when naming clarity materially improves comprehension
+- if the split would produce more than 3 new files, re-read `../references/anti-overengineering.md` — the boundary choice is likely wrong
 
 ## Deliverable
 

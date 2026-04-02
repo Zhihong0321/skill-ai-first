@@ -74,6 +74,9 @@ Prioritize in this order:
 - MUST NOT must be concrete, not vague (e.g., "MUST NOT call external APIs" not "MUST NOT do too much")
 - STABLE SINCE is the date the contract was written, not the date the file was created
 - update LAST REVIEWED whenever the contract is re-read and confirmed as still accurate
+- contracts describe what the module IS today — not what it could be, should be, or might become
+- if writing the contract reveals the module already does too much, note it in `.agents/ambiguities.md` — do not silently redesign it
+- read `../references/anti-overengineering.md` if you feel tempted to write a contract for a module that does not yet exist
 
 ## Use `../scripts/find_missing_contracts.py`
 

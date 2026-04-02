@@ -22,10 +22,11 @@ Improve the big-picture shape of the codebase without turning the run into a ful
 ## Workflow
 
 1. Confirm one architecture target.
-2. Describe the current mismatch in plain language.
-3. Define the intended simpler shape.
-4. Make one structural improvement.
-5. Verify behavior did not regress.
+2. Read `../references/anti-overengineering.md` — confirm the improvement removes complexity rather than adds a new layer.
+3. Describe the current mismatch in plain language.
+4. Define the intended simpler shape.
+5. Make one structural improvement.
+6. Verify behavior did not regress.
 
 ## Rules
 
@@ -33,6 +34,7 @@ Improve the big-picture shape of the codebase without turning the run into a ful
 - do not combine with repo-wide cleanup
 - do not jump to overhaul when a focused simplification is enough
 - prefer deletion of duplicate logic over adding another abstraction
+- if the improvement introduces a new pattern, interface, or layer that has only one concrete user today, stop — read `../references/anti-overengineering.md`
 
 ## Escalation Threshold
 
