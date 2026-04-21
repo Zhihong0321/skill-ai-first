@@ -1,4 +1,4 @@
----
+﻿---
 name: ai-first-maintenance
 description: Use when the user says "run ai-first-maintenance" or any equivalent. This is the Front Desk — the only skill that should be invoked directly. It reads the repo state, checks the log and last-session file, determines the situation in one pass, and dispatches to exactly one specialist skill. It does not perform any specialized work itself.
 ---
@@ -90,6 +90,31 @@ All other skills in this bundle are specialists. The Front Desk reads the situat
      --next-stage "<recommended next>"
    ```
 3. If work is incomplete or a decision was deferred, dispatch to `../session-handoff/SKILL.md`.
+4. **Report to the user** — see Step 4.
+
+---
+
+## Step 4 — Report to the user
+
+After every run, respond with **this table and nothing else**. No narrative. No session overview. No apology for partial work. Just the table.
+
+```
+| | | |
+|---|---|---|
+| **Stage** | [current stage name] | [YYYY-MM-DD] |
+| **Health** | [one honest sentence about the codebase state] | |
+| **Done** | [what was completed this session] | [YYYY-MM-DD] |
+| **Not Done** | [one remaining item] | |
+| **Not Done** | [repeat — one row per item] | |
+| **Next** | [one exact action — specific file, specific task] | |
+```
+
+**Rules for this table:**
+- one Not Done row per item — never combine multiple items in one cell
+- if planning only with no changes made, write `planning only — no edits made` in the Done row
+- if next action is unclear, write `run codebase-mapper to identify next target` — never leave blank
+- keep every cell under 12 words
+- no text above or below the table
 
 ---
 
