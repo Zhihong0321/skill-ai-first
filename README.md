@@ -32,6 +32,68 @@ The internal specialist folders are implementation details of the bundle. For th
 
 ---
 
+## Quick Start
+
+**Three steps. Under two minutes.**
+
+---
+
+### Step 1 — Install
+
+Run from your **project root**:
+
+**Simplest — git clone (no Python needed):**
+```bash
+git clone https://github.com/Zhihong0321/skill-ai-first.git .agents/skills/ai-first-maintenance-bundle
+```
+
+**Windows PowerShell:**
+```powershell
+$tmp = Join-Path $env:TEMP "install_ai_first.py"
+Invoke-WebRequest https://raw.githubusercontent.com/Zhihong0321/skill-ai-first/main/scripts/install_from_github.py -OutFile $tmp
+python $tmp --project-root .
+```
+
+**macOS / Linux:**
+```bash
+curl -fsSL https://raw.githubusercontent.com/Zhihong0321/skill-ai-first/main/scripts/install_from_github.py -o /tmp/install_ai_first.py
+python3 /tmp/install_ai_first.py --project-root .
+```
+
+---
+
+### Step 2 — Register with your AI
+
+Pick the one that matches your setup:
+
+**Cursor / Windsurf / Cline** — add one line to your rules file (`.cursorrules`, `.windsurfrules`, or `.clinerules`):
+```
+When the user says "run ai-first-maintenance", read and execute .agents/skills/ai-first-maintenance-bundle/ai-first-maintenance/SKILL.md
+```
+
+**Claude Projects / ChatGPT Custom Instructions** — paste into your project or system instructions:
+```
+When asked to "run ai-first-maintenance", read and follow .agents/skills/ai-first-maintenance-bundle/ai-first-maintenance/SKILL.md
+```
+
+**Any AI, no configuration** — say this at the start of any session:
+```
+Read .agents/skills/ai-first-maintenance-bundle/ai-first-maintenance/SKILL.md and run it.
+```
+
+---
+
+### Step 3 — Run
+
+Tell your AI:
+```
+run ai-first-maintenance
+```
+
+The first run creates `.agents/ai-first-maintenance-log.md` in your project and dispatches to the right specialist. Every session after, it reads the log and continues from where it left off.
+
+---
+
 ## Built For
 
 This bundle is optimized for five practical outcomes:
@@ -224,44 +286,27 @@ RMINGI reads the existing codebase, surfaces every guessed intention explicitly,
 
 ## Installation
 
-Install this repository as **one bundle**. The bundle contains multiple specialist skills internally, but they are not separate installs.
+See [Quick Start](#quick-start) above for the fastest path.
 
-**Direct from GitHub:**
+**Requirements:** Python 3.8+ (only if not using git clone) · No external dependencies
 
-Windows PowerShell:
-```powershell
-$tmp = Join-Path $env:TEMP "install_ai_first_from_github.py"
-Invoke-WebRequest https://raw.githubusercontent.com/Zhihong0321/skill-ai-first/main/scripts/install_from_github.py -OutFile $tmp
-python $tmp --project-root C:\path\to\your\project
-```
-
-macOS / Linux:
+**Custom install path:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Zhihong0321/skill-ai-first/main/scripts/install_from_github.py -o /tmp/install_ai_first_from_github.py
-python /tmp/install_ai_first_from_github.py --project-root /path/to/your/project
+# Install to a specific skills directory
+python install_from_github.py --skills-root /path/to/your/skills
+
+# Install to an exact path
+python install_from_github.py --target /exact/path/to/ai-first-maintenance-bundle
 ```
 
-**Recommended installer:**
+**Upgrade an existing install:**
 ```bash
-python scripts/install_bundle.py --project-root /path/to/your/project
+python install_from_github.py --project-root . --force
 ```
 
-This installs the full package to:
-```text
-/path/to/your/project/.agents/skills/ai-first-maintenance-bundle
+**Installed layout:**
 ```
-
-**Alternative installer targets:**
-```bash
-python scripts/install_bundle.py --skills-root /path/to/your/skills
-python scripts/install_bundle.py --target /exact/path/to/ai-first-maintenance-bundle
-```
-
-**Installed bundle layout:**
-```
-ai-first-maintenance-bundle/
-  README.md
-  bundle-manifest.json
+.agents/skills/ai-first-maintenance-bundle/
   ai-first-codebase/         ← Layer 3: write AI-first code
   ai-first-maintenance/      ← Front Desk — start here
   baseline-locker/
@@ -270,18 +315,6 @@ ai-first-maintenance-bundle/
   scripts/
   templates/
 ```
-
-**Usage:**
-```
-"run ai-first-maintenance"
-```
-
-The Front Desk takes it from there, creates the maintenance log on the first run if needed, and uses that log to continue maintenance across future sessions.
-
-**Requirements:**
-- Python 3.8+ (for scripts)
-- No external dependencies
-- Any AI agent with skill/SKILL.md loading support
 
 ---
 
