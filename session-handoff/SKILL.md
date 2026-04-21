@@ -8,6 +8,7 @@ description: Use at the end of every AI coding session to write a structured han
 Use this skill at the **end of every session** before closing.
 
 The handoff file is the single most important continuity document in an AI-first codebase. Without it, every new session starts blind.
+It complements the maintenance log: the log tracks staged progress over time, while the handoff captures the freshest resume context from this exact session.
 
 ## Goal
 

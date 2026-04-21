@@ -30,6 +30,9 @@
 ## Recommended First Action Next Session
 [exact, specific action the next AI should take]
 
+## Maintenance Log Sync
+[confirm whether `.agents/ai-first-maintenance-log.md` was updated this session, and with what status/next action]
+
 ## Open Ambiguities Added This Session
 [titles of new entries added to .agents/ambiguities.md, or "none"]
 

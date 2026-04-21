@@ -47,6 +47,7 @@ Before choosing a new stage, read the last log entry.
 - do not declare a stage complete unless verification was explicitly performed and passed
 - if the in-progress state is ambiguous or the target is no longer valid, note the skip in the log with a reason and proceed
 - never silently skip an unverified change
+- use the last log entry's `next exact action` when it is still valid instead of inventing a fresh resume path
 
 ## Stage Model
 
@@ -143,6 +144,9 @@ Every run should end with:
 - chosen stage
 - chosen target
 - why this target now
+- status
 - exact work completed
 - verification performed
+- blockers
+- next exact action
 - recommended next stage

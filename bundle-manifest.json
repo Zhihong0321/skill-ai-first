@@ -1,0 +1,30 @@
+{
+  "bundle_name": "ai-first-maintenance-bundle",
+  "entry_skill": "ai-first-maintenance",
+  "description": "Two-layer AI-first maintenance bundle with staged maintenance skills, operating-memory skills, shared references, templates, and scripts.",
+  "requires_python": ">=3.8",
+  "includes": [
+    "README.md",
+    "bundle-manifest.json",
+    ".gitignore",
+    "ai-first-maintenance",
+    "ambiguity-register",
+    "architecture-optimizer",
+    "baseline-locker",
+    "blast-radius-mapper",
+    "codebase-mapper",
+    "confidence-annotator",
+    "context-navigator",
+    "contract-writer",
+    "decision-registrar",
+    "file-digester",
+    "maintain-ai-first-codebase",
+    "model-router",
+    "overhaul-planner",
+    "references",
+    "residual-cleaner",
+    "scripts",
+    "session-handoff",
+    "templates"
+  ]
+}

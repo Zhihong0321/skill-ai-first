@@ -6,6 +6,32 @@ from pathlib import Path
 
 
 DEFAULT_RELATIVE_PATH = Path(".agents") / "ai-first-maintenance-log.md"
+VALID_STAGES = (
+    "baseline-locked",
+    "map-ready",
+    "digestion-ready",
+    "cleaning-ready",
+    "optimization-ready",
+    "overhaul-ready",
+)
+VALID_NEXT_STAGES = VALID_STAGES + ("none",)
+VALID_STATUSES = (
+    "planned",
+    "in-progress",
+    "verification-pending",
+    "complete",
+    "blocked",
+    "deferred",
+)
+
+
+def parse_iso_date(value: str) -> str:
+    try:
+        return date.fromisoformat(value).isoformat()
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(
+            f"invalid date '{value}'; expected YYYY-MM-DD"
+        ) from exc
 
 
 def resolve_log_path(repo_root: Path, explicit: str | None) -> Path:
@@ -39,8 +65,11 @@ def append_entry(log_path: Path, args: argparse.Namespace) -> None:
         f"- chosen stage: {args.stage}",
         f"- chosen target: {args.target}",
         f"- reason: {args.reason}",
+        f"- status: {args.status}",
         f"- action taken: {args.action}",
         f"- verification: {args.verification}",
+        f"- blockers: {args.blockers}",
+        f"- next exact action: {args.next_action}",
         f"- next recommended stage: {args.next_stage}",
         "",
     ]
@@ -55,16 +84,20 @@ def main() -> int:
     parser.add_argument("--repo-name", help="Optional repo name override.")
     parser.add_argument("--init", action="store_true", help="Initialize the log if missing.")
     parser.add_argument("--mode", default="planning", choices=["planning", "action"], help="Run mode: planning or action.")
-    parser.add_argument("--stage", default="map-ready", help="Chosen stage.")
+    parser.add_argument("--stage", default="map-ready", choices=VALID_STAGES, help="Chosen stage.")
     parser.add_argument("--target", default="(not selected yet)", help="Chosen target.")
     parser.add_argument("--reason", default="Initial maintenance run.", help="Why the target was chosen.")
+    parser.add_argument("--status", default="planned", choices=VALID_STATUSES, help="Current status of this maintenance target.")
     parser.add_argument("--action", default="Initialized maintenance tracking.", help="What happened in this run.")
     parser.add_argument("--verification", default="Not run.", help="Verification performed.")
-    parser.add_argument("--next-stage", default="map-ready", help="Recommended next stage.")
+    parser.add_argument("--blockers", default="none", help="Blocking issue, if any.")
+    parser.add_argument("--next-action", default="Continue stage selection from the current repo state.", help="Exact next step for the next session.")
+    parser.add_argument("--next-stage", default="map-ready", choices=VALID_NEXT_STAGES, help="Recommended next stage.")
     parser.add_argument(
         "--date",
         dest="entry_date",
         default=str(date.today()),
+        type=parse_iso_date,
         help="Entry date in YYYY-MM-DD format.",
     )
     args = parser.parse_args()

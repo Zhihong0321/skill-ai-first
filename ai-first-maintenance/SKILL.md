@@ -18,22 +18,28 @@ All other skills in this bundle are specialists. The Front Desk reads the situat
 
 2. **Locate the user's repo root** — the project being maintained.
 
-3. **Check for a session in progress:**
+3. **Initialize maintenance memory on first run:**
+   If no maintenance log exists in the default or fallback locations, create it immediately:
+   ```
+   python <bundle-root>/scripts/update_maintenance_log.py --repo-root <repo-root> --init
+   ```
+   This first-run write is intentional. The bundle is designed for long-running maintenance that may span multiple sessions or weeks.
+
+4. **Check for a session in progress:**
    Read `<repo-root>/.agents/last-session.md` if it exists.
    If work status is `partial` or `blocked` → skip to **Dispatch Rule A**.
 
-4. **Check the maintenance log:**
+5. **Check the maintenance log:**
    Read `.agents/ai-first-maintenance-log.md` (or fallback locations).
-   If no log exists → skip to **Dispatch Rule B**.
    If a stage is marked in-progress → skip to **Dispatch Rule A**.
 
-5. **Run the two inventory scripts** against the repo root:
+6. **Run the two inventory scripts** against the repo root:
    ```
    python <bundle-root>/scripts/inventory_large_files.py <repo-root>
    python <bundle-root>/scripts/find_context_noise.py <repo-root>
    ```
 
-6. **Read the last 1–2 log entries** and the stage-selection reference:
+7. **Read the last 1–2 log entries** and the stage-selection reference:
    `<bundle-root>/references/stage-selection.md`
 
 ---
@@ -43,7 +49,7 @@ All other skills in this bundle are specialists. The Front Desk reads the situat
 | Rule | Situation | Dispatch to |
 |------|-----------|------------|
 | **A** | Prior session is partial, blocked, or in-progress | Resume the specialist from `last-session.md` |
-| **B** | No maintenance log exists | `../baseline-locker/SKILL.md` |
+| **B** | First run or newly initialized maintenance history | `../baseline-locker/SKILL.md` |
 | **C** | Baseline confidence is weak or untested | `../baseline-locker/SKILL.md` |
 | **D** | No maintenance map exists or next target is unclear | `../codebase-mapper/SKILL.md` |
 | **E** | One file is too large or too mixed to reason about | `../file-digester/SKILL.md` |
@@ -74,8 +80,11 @@ All other skills in this bundle are specialists. The Front Desk reads the situat
      --stage <chosen-stage> \
      --target "<chosen-target>" \
      --reason "<why this target>" \
+     --status <planned|in-progress|verification-pending|complete|blocked|deferred> \
      --action "<what was done>" \
      --verification "<what was checked>" \
+     --blockers "<blocking issue or none>" \
+     --next-action "<exact next step for the next session>" \
      --next-stage "<recommended next>"
    ```
 3. If work is incomplete or a decision was deferred, dispatch to `../session-handoff/SKILL.md`.
@@ -87,6 +96,7 @@ All other skills in this bundle are specialists. The Front Desk reads the situat
 - **never perform specialized work directly** — always dispatch to a specialist
 - **never dispatch to more than one specialist per run**
 - **never skip Step 1** — the log and last-session file are mandatory reads
+- **leave a precise resume path** — every run should end with a next exact action, not just a stage label
 - if two rules match, pick the one that appears first in the table
 - if a specialist's work surfaces a new ambiguity or decision, note it — those are separate dispatches in future runs
 

@@ -20,6 +20,29 @@ This bundle addresses all of it — systematically, one task at a time.
 
 ---
 
+## One Install, One Command
+
+This bundle is meant to feel simple in practice:
+
+- **One install**: install this whole repository as one bundle. Do not cherry-pick individual folders.
+- **One command**: say `run ai-first-maintenance`.
+- **Own memory**: on the first run, the bundle creates `.agents/ai-first-maintenance-log.md` in the maintained repo and keeps building on it across later sessions and weeks.
+
+The internal specialist folders are implementation details of the bundle. For the user and the AI agent, the front door stays the same: install once, invoke one command, resume from the log next time.
+
+---
+
+## Built For
+
+This bundle is optimized for four practical outcomes:
+
+- **easy install, easy run**: install the bundle once, then trigger everything from `run ai-first-maintenance`
+- **long-running AI maintenance authority**: the AI can work carefully across many sessions, one step at a time, without losing progress
+- **file management discipline**: legacy files, stale notes, dead folders, and backup artifacts can be deleted, quarantined, or archived deliberately instead of piling up
+- **robust progress memory**: the maintenance log and session handoff are treated as first-class operating files so later sessions can resume accurately
+
+---
+
 ## Two Layers
 
 ### Layer 1 — Maintenance Discipline
@@ -181,17 +204,51 @@ RMINGI reads the existing codebase, surfaces every guessed intention explicitly,
 
 ## Installation
 
-**Project-local usage:**
+Install this repository as **one bundle**. The bundle contains multiple specialist skills internally, but they are not separate installs.
+
+**Direct from GitHub:**
+
+Windows PowerShell:
+```powershell
+$tmp = Join-Path $env:TEMP "install_ai_first_from_github.py"
+Invoke-WebRequest https://raw.githubusercontent.com/Zhihong0321/skill-ai-first/main/scripts/install_from_github.py -OutFile $tmp
+python $tmp --project-root C:\path\to\your\project
 ```
-.agents/
-  skills/
-    ai-first-maintenance/
-    maintain-ai-first-codebase/
-    baseline-locker/
-    ... (keep full folder structure intact)
-    references/
-    scripts/
-    templates/
+
+macOS / Linux:
+```bash
+curl -fsSL https://raw.githubusercontent.com/Zhihong0321/skill-ai-first/main/scripts/install_from_github.py -o /tmp/install_ai_first_from_github.py
+python /tmp/install_ai_first_from_github.py --project-root /path/to/your/project
+```
+
+**Recommended installer:**
+```bash
+python scripts/install_bundle.py --project-root /path/to/your/project
+```
+
+This installs the full package to:
+```text
+/path/to/your/project/.agents/skills/ai-first-maintenance-bundle
+```
+
+**Alternative installer targets:**
+```bash
+python scripts/install_bundle.py --skills-root /path/to/your/skills
+python scripts/install_bundle.py --target /exact/path/to/ai-first-maintenance-bundle
+```
+
+**Installed bundle layout:**
+```
+ai-first-maintenance-bundle/
+  README.md
+  bundle-manifest.json
+  ai-first-maintenance/
+  maintain-ai-first-codebase/
+  baseline-locker/
+  ... (specialist skills)
+  references/
+  scripts/
+  templates/
 ```
 
 **Usage:**
@@ -199,7 +256,7 @@ RMINGI reads the existing codebase, surfaces every guessed intention explicitly,
 "run ai-first-maintenance"
 ```
 
-The Front Desk takes it from there.
+The Front Desk takes it from there, creates the maintenance log on the first run if needed, and uses that log to continue maintenance across future sessions.
 
 **Requirements:**
 - Python 3.8+ (for scripts)
@@ -214,5 +271,6 @@ The Front Desk takes it from there.
 - **Resume before you replace.** If a prior session left work unfinished, finish it first.
 - **Log everything.** The maintenance log and session handoff are mandatory on every run.
 - **Prefer reversible changes.** Soft-remove before delete. Plan before overhaul.
+- **Quarantine before guessing.** If a legacy file or folder might still matter, move it out of the active path before deleting it permanently.
 - **Optimize for AI readability.** Not human preference, not theoretical perfection.
 - **Read intention before touching anything.** What a feature does is in the code. Why it exists is not.
