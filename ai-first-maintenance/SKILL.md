@@ -65,7 +65,7 @@ All other skills in this bundle are specialists. The Front Desk reads the situat
 | **M** | Blast radius of a planned change is unknown | `../blast-radius-mapper/SKILL.md` |
 | **N** | Nav index is missing or stale after structural changes | `../context-navigator/SKILL.md` |
 | **O** | Files touched by multiple models have no confidence signals | `../confidence-annotator/SKILL.md` |
-| **P** | Model roster has changed or routing decisions are needed | `../model-router/SKILL.md` |
+| **P** | Code is being written or reviewed and needs AI-first practices (file headers, negative constraints, CONTEXT.md, inline decision records) | `../ai-first-codebase/SKILL.md` |
 
 **Stop at the first matching rule. Dispatch to one specialist only.**
 
@@ -122,5 +122,4 @@ All other skills in this bundle are specialists. The Front Desk reads the situat
 | `contract-writer` | Adds @ai-contract headers to define module scope boundaries |
 | `ambiguity-register` | Records a known unknown that AI must not resolve unilaterally |
 | `confidence-annotator` | Adds @ai-stable / @ai-uncertain / @ai-todo signals to code |
-| `model-router` | Builds and maintains the task-to-model routing table |
-| `maintain-ai-first-codebase` | Deep orchestration logic — read only if dispatch logic is insufficient |
+| `ai-first-codebase` | Writes AI-first code — negative constraints, file headers, CONTEXT.md, inline decision records, explicit style, tests as spec |

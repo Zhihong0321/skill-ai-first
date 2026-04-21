@@ -59,3 +59,4 @@ Do not record:
 - write for a future AI that has never seen this codebase
 - if the reason is "we don't know yet," do not record a decision — record an ambiguity in `.agents/ambiguities.md` instead
 - if a decision is reversed, mark the old entry SUPERSEDED and add a new entry explaining the change
+- for decisions tied to a single function or code location, also write an inline micro-ADR at that exact line using `../ai-first-codebase/references/decision-record-patterns.md`

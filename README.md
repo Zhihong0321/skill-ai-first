@@ -2,7 +2,7 @@
 
 > *Built by AI. Maintained by AI. With discipline.*
 
-A two-layer skill bundle for keeping large, AI-maintained codebases clean, navigable, and intentional — across long development cycles and multiple AI models.
+A three-layer skill bundle for keeping large, AI-maintained codebases clean, navigable, and intentional — across long development cycles and multiple AI models.
 
 ---
 
@@ -34,7 +34,7 @@ The internal specialist folders are implementation details of the bundle. For th
 
 ## Built For
 
-This bundle is optimized for four practical outcomes:
+This bundle is optimized for five practical outcomes:
 
 - **easy install, easy run**: install the bundle once, then trigger everything from `run ai-first-maintenance`
 - **long-running AI maintenance authority**: the AI can work carefully across many sessions, one step at a time, without losing progress
@@ -44,7 +44,8 @@ This bundle is optimized for four practical outcomes:
 
 ---
 
-## Two Layers
+
+## Three Layers
 
 ### Layer 1 — Maintenance Discipline
 *Stop bad AI behavior before it compounds.*
@@ -55,6 +56,11 @@ A staged, single-task-per-run workflow that keeps the codebase clean, manageable
 *Make good AI behavior automatic across sessions and models.*
 
 A persistent memory layer — session handoffs, decision logs, module contracts, blast radius maps, confidence signals — so every agent that touches the codebase starts informed rather than guessing.
+
+### Layer 3 — AI-First Coding Style
+*Write code that AI agents can read, trust, and change correctly.*
+
+Coding practices that make implicit context explicit — inside the source files themselves — so AI agents never have to guess what must not change or why a decision was made.
 
 ---
 
@@ -90,7 +96,6 @@ The Front Desk never performs specialist work. Specialists are invoked one at a 
 | Skill | What it does |
 |-------|-------------|
 | `ai-first-maintenance` | **Front Desk** — reads the situation, dispatches to one specialist only |
-| `maintain-ai-first-codebase` | Deep orchestration logic and stage selection |
 | `baseline-locker` | Confirms the current working state is safe before any changes |
 | `codebase-mapper` | Builds a ranked maintenance map — reads at most 5 files per run |
 | `file-digester` | Splits one oversized or overloaded file into focused modules |
@@ -119,7 +124,6 @@ Each stage is a gate. The Front Desk checks the log before moving forward. No st
 | `contract-writer` | inline `@ai-contract` headers | Defines scope boundaries inside each module |
 | `ambiguity-register` | `.agents/ambiguities.md` | Tracks known unknowns — the do-not-guess list |
 | `confidence-annotator` | inline `@ai-stable / @ai-uncertain / @ai-todo` | Tags code by how verified it is |
-| `model-router` | `.agents/model-routing.md` | Routes task types to the right AI model |
 
 ### The `.agents/` Memory Layer
 
@@ -132,11 +136,25 @@ Every agent that runs on a project reads these files first:
 ├── decisions.md                  ← WHY architectural choices were made
 ├── nav.md                        ← what to read for each task type
 ├── blast-radius.md               ← module impact map
-├── ambiguities.md                ← known unknowns (do not resolve without human)
-└── model-routing.md              ← which AI model for which task
+└── ambiguities.md                ← known unknowns (do not resolve without human)
 ```
 
 Ready-to-copy templates for all of these are in `templates/`.
+
+---
+
+## Layer 3 — AI-First Coding Style
+
+| Practice | What it does |
+|---------|-------------|
+| Negative constraints | `DO NOT [action] — [consequence]` comments at the exact line of the constraint |
+| File context headers | `WHAT / WHY / OWNS / NOT / DANGER` blocks at the top of every non-trivial file |
+| Inline decision records | Micro-ADRs at the exact location of a non-obvious architectural choice |
+| Explicit over clever | Named intermediate steps, early returns, named constants — code each AI step can audit independently |
+| `CONTEXT.md` per domain | Module-level briefing file — business rules, known fragile areas, tried-and-rejected approaches, dependency map |
+| Tests as living spec | Behavior-named tests with `// INVARIANT:` annotations on critical business rule assertions |
+
+Templates and reference pattern libraries for all six practices are included in `ai-first-codebase/`.
 
 ---
 
@@ -182,13 +200,13 @@ Policy files referenced by skills — never duplicated, always linked:
 
 | Reference | Used by |
 |----------|--------|
-| `stage-selection.md` | Front Desk, maintain-ai-first-codebase |
+| `stage-selection.md` | Front Desk |
 | `ai-friendly-code-shape.md` | file-digester |
 | `soft-remove-policy.md` | residual-cleaner |
 | `maintenance-log-policy.md` | All logging steps |
 | `external-skill-intake.md` | When adopting outside skill patterns |
 | `anti-overengineering.md` | file-digester, architecture-optimizer, contract-writer |
-| `branch-safety.md` | Front Desk, maintain-ai-first-codebase, risky action stages |
+| `branch-safety.md` | Front Desk, risky action stages |
 
 ---
 
@@ -244,8 +262,8 @@ python scripts/install_bundle.py --target /exact/path/to/ai-first-maintenance-bu
 ai-first-maintenance-bundle/
   README.md
   bundle-manifest.json
-  ai-first-maintenance/
-  maintain-ai-first-codebase/
+  ai-first-codebase/         ← Layer 3: write AI-first code
+  ai-first-maintenance/      ← Front Desk — start here
   baseline-locker/
   ... (specialist skills)
   references/

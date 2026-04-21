@@ -81,3 +81,10 @@ Prioritize in this order:
 ## Use `../scripts/find_missing_contracts.py`
 
 This script scans the repo and lists modules that do not yet have an `@ai-contract` header, sorted by file size. Use it to prioritize contract writing work.
+
+## Richer Alternatives
+`@ai-contract` is compact and machine-readable — suitable for any module.
+For modules that also need domain context, fragile-area warnings, or tried-and-rejected history, use the fuller formats in `../ai-first-codebase/`:
+
+- `templates/file-header.md` — WHAT / WHY / OWNS / NOT / DANGER header (replaces or supplements `@ai-contract`)
+- `templates/CONTEXT-template.md` — full module briefing file including business rules, dependency map, and glossary
