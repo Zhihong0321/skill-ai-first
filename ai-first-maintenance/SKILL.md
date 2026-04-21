@@ -41,6 +41,8 @@ All other skills in this bundle are specialists. The Front Desk reads the situat
 
 7. **Read the last 1–2 log entries** and the stage-selection reference:
    `<bundle-root>/references/stage-selection.md`
+   Also read:
+   `<bundle-root>/references/branch-safety.md`
 
 ---
 
@@ -96,6 +98,7 @@ All other skills in this bundle are specialists. The Front Desk reads the situat
 - **never perform specialized work directly** — always dispatch to a specialist
 - **never dispatch to more than one specialist per run**
 - **never skip Step 1** — the log and last-session file are mandatory reads
+- **require a branch for risky action stages** — before `cleaning-ready`, `digestion-ready`, `optimization-ready`, or `overhaul-ready`, confirm the repo is on a dedicated branch or switch to planning mode
 - **leave a precise resume path** — every run should end with a next exact action, not just a stage label
 - if two rules match, pick the one that appears first in the table
 - if a specialist's work surfaces a new ambiguity or decision, note it — those are separate dispatches in future runs

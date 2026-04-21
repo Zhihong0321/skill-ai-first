@@ -15,6 +15,7 @@ The purpose is not to "fix everything." The purpose is to keep the codebase easy
 - keep each run narrow: one stage, one target, one deliverable
 - do not mix digestion, cleanup, and optimization in one pass
 - prefer reversible changes over aggressive deletion
+- use a dedicated branch before risky structural work
 - treat large files, stale files, and obsolete decisions as different classes of work
 - read the previous maintenance log before choosing the next stage
 
@@ -112,6 +113,18 @@ If the next stage is still unclear:
 - favor `digestion-ready` over `optimization-ready`
 - favor `soft-remove` over hard delete when cleanup confidence is medium
 
+## Branch Safety
+
+Read `../references/branch-safety.md` before action work in:
+
+- `cleaning-ready`
+- `digestion-ready`
+- `optimization-ready`
+- `overhaul-ready`
+
+If the repo is on `main` or another shared stable branch, do not perform those stages in action mode until a dedicated branch exists.
+If branching is unavailable, downgrade to planning mode and record that limitation in the log.
+
 ## External Skill Intake
 
 When stage work would benefit from an external or existing `SKILL.md`:
@@ -130,6 +143,7 @@ Read `../references/external-skill-intake.md` before incorporating outside skill
 - `../references/soft-remove-policy.md`
 - `../references/external-skill-intake.md`
 - `../references/maintenance-log-policy.md`
+- `../references/branch-safety.md`
 
 ## Shared Scripts
 

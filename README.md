@@ -40,6 +40,7 @@ This bundle is optimized for four practical outcomes:
 - **long-running AI maintenance authority**: the AI can work carefully across many sessions, one step at a time, without losing progress
 - **file management discipline**: legacy files, stale notes, dead folders, and backup artifacts can be deleted, quarantined, or archived deliberately instead of piling up
 - **robust progress memory**: the maintenance log and session handoff are treated as first-class operating files so later sessions can resume accurately
+- **safer structural work**: risky cleanup, digestion, and optimization runs should happen on dedicated branches so they stay recoverable
 
 ---
 
@@ -187,6 +188,7 @@ Policy files referenced by skills — never duplicated, always linked:
 | `maintenance-log-policy.md` | All logging steps |
 | `external-skill-intake.md` | When adopting outside skill patterns |
 | `anti-overengineering.md` | file-digester, architecture-optimizer, contract-writer |
+| `branch-safety.md` | Front Desk, maintain-ai-first-codebase, risky action stages |
 
 ---
 
@@ -272,5 +274,6 @@ The Front Desk takes it from there, creates the maintenance log on the first run
 - **Log everything.** The maintenance log and session handoff are mandatory on every run.
 - **Prefer reversible changes.** Soft-remove before delete. Plan before overhaul.
 - **Quarantine before guessing.** If a legacy file or folder might still matter, move it out of the active path before deleting it permanently.
+- **Branch before structural work.** Use a dedicated branch for cleanup, digestion, optimization, and overhaul passes.
 - **Optimize for AI readability.** Not human preference, not theoretical perfection.
 - **Read intention before touching anything.** What a feature does is in the code. Why it exists is not.
